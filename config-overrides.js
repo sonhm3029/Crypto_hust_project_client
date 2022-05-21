@@ -14,6 +14,7 @@ module.exports = function override(config, env) {
       "@views": path.resolve(__dirname, "src/views"),
       "@constants": path.resolve(__dirname, "src/constants"),
       "@layouts": path.resolve(__dirname, "src/views/layouts"),
+      "@routes": path.resolve(__dirname, "src/routes"),
     },
   };
 

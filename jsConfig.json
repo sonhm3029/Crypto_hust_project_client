@@ -10,7 +10,8 @@
         "@layouts/*": ["src/views/layouts/*"],
         "@assets/*": ["src/assets/*"],
         "@images/*": ["src/assets/images/*"],
-        "@videos/*": ["src/assets/videos/*"]
+        "@videos/*": ["src/assets/videos/*"],
+        "@routes/*": ["src/assets/routes/*"]
       }
     }
   }
