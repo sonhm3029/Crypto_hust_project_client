@@ -2,7 +2,7 @@ import axios from "axios";
 
 const clientUtils = {
   auth: "",
-  sendRequest({ method, url, data, ignoreAuth }) {
+  sendRequest(method, url, data, ignoreAuth) {
     return new Promise((resolve, reject) => {
       if (!data) data = {};
       if (method.toLowerCase() !== "get") data = JSON.stringify(data);
@@ -22,16 +22,7 @@ const clientUtils = {
             }
       )
         .then((s) => {
-          s.json()
-            .then((val) => {
-              if (val.code === 401) {
-                localStorage.clear();
-              }
-              resolve(val);
-            })
-            .catch((e) => {
-              reject(e);
-            });
+          resolve(s);
         })
         .catch((e) => {
           if (e && e.status === 401) {
@@ -41,7 +32,7 @@ const clientUtils = {
         });
     });
   },
-  makeRequest(method, url, headers, data) {
+  makeRequest(method, url, data,headers) {
     return new Promise((resolve, reject) => {
       let axiosConfig = {
         method,
@@ -51,8 +42,7 @@ const clientUtils = {
       if (method.toLowerCase() !== "get") axiosConfig.data = data;
       return axios(axiosConfig)
         .then((res) => {
-          if (!res.ok) reject(res);
-          else resolve(res);
+          resolve(res);
         })
         .catch((err) => {
           reject(err);
