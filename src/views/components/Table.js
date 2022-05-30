@@ -14,26 +14,25 @@ const HoveredDiv = styled.div`
   }
 `;
 
-const Table = ({ rowsPerPage, page, rows, emptyRows, props }) => {
-  
+const Table = ({ rowsPerPage, page, rows, emptyRows, typeEmail, props }) => {
   const [modalState, setModalState] = useState({
-    modalData:{},
-    isShowModal:false
-  })
+    modalData: {},
+    isShowModal: false,
+  });
 
   const handleShowDetail = (record) => {
-   setModalState({
-     isShowModal:true,
-     modalData:record
-   })
+    setModalState({
+      isShowModal: true,
+      modalData: record,
+    });
   };
 
   const handleCloseModalDetail = () => {
     setModalState({
-      isShowModal:false,
-      modalData:{}
-    })
-  }
+      isShowModal: false,
+      modalData: {},
+    });
+  };
 
   return (
     // <HoveredDiv>
@@ -51,7 +50,11 @@ const Table = ({ rowsPerPage, page, rows, emptyRows, props }) => {
               className="hovered-row"
             >
               <TableRow key={row.name}>
-                <TableCell style={{ width: "30%" }}>{row?.title}</TableCell>
+                <TableCell style={{ width: "30%" }}>
+                  {typeEmail === "sent"
+                    ? row?.receiver?.email
+                    : row?.sender?.email}
+                </TableCell>
                 <TableCell style={{ width: "60%" }} align="left">
                   {row?.title}
                 </TableCell>

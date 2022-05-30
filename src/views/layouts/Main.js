@@ -50,6 +50,11 @@ export default function CustomPaginationActionsTable({typeEmail}) {
     let res = await emailProvider.searchById(param);
     if( res?.data?.data?.length > 0) {
         setRows(res?.data?.data);
+        return;
+    }
+    else if(res?.data?.data) {
+      setRows([res?.data?.data]);
+      return;
     }
   }
 
@@ -83,6 +88,7 @@ export default function CustomPaginationActionsTable({typeEmail}) {
           rowsPerPage={rowsPerPage}
           page={page}
           rows={rows}
+          typeEmail={typeEmail}
           emptyRows={emptyRows}
         />
       </Table>

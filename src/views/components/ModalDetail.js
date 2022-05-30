@@ -52,13 +52,13 @@ export default function ModalDetail({ data, handleOpen, handleClose, open }) {
             }}><strong>From:</strong></p>
             <p style={{
                 marign:"1px!important"
-            }}>{data?.senderId}</p>
+            }}>{data?.sender?.email}</p>
             <p style={{
                 marign:"1px!important"
             }}><strong>To:</strong></p>
             <p style={{
                 marign:"1px!important"
-            }}>{data?.receiverId}</p>
+            }}>{data?.receiver?.email}</p>
             <p><i>Date: {new Date(data?.createdAt)?.toLocaleDateString()}</i></p>
           </div>
           <div style={{
