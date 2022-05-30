@@ -23,6 +23,17 @@ const userProvider = {
         .catch((err) => reject(err));
     });
   },
+  search() {
+    let url = "http://localhost:5000/users";
+    return new Promise((resolve, reject) => {
+      clientUtils
+        .sendRequest("get", url, {}, true)
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => reject(err));
+    });
+  },
 };
 
 export default userProvider;

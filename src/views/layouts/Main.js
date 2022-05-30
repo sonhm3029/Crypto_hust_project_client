@@ -9,6 +9,7 @@ import { Table } from "@mui/material";
 import MyTable from "../components/Table";
 import {useEffect, useState} from "react";
 import emailProvider from "../../data-access/emails";
+import Dialog from '@mui/material/Dialog';
 
 
 TablePaginationActions.propTypes = {
@@ -20,11 +21,11 @@ TablePaginationActions.propTypes = {
 
 
 
-export default function CustomPaginationActionsTable() {
+export default function CustomPaginationActionsTable({typeEmail}) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [rows, setRows] = useState([]);
-  const [typeEmail, setTypeEmail] = useState("sent");
+  
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -43,7 +44,7 @@ export default function CustomPaginationActionsTable() {
     let param = {
         page,
         size:rowsPerPage,
-        id:'629325645d8aa0bcb7010e6d',
+        id:JSON.parse(localStorage.getItem("user"))?._id,
         typeEmail
     }
     let res = await emailProvider.searchById(param);
@@ -54,7 +55,7 @@ export default function CustomPaginationActionsTable() {
 
   useEffect(() => {
     getData();
-  }, [])
+  }, [typeEmail])
 
   return (
     <TableContainer component={Paper}>
